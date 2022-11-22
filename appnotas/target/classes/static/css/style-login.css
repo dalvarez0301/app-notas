@@ -1,0 +1,40 @@
+:root{
+    --dark: #16191C;
+    --dark-x: #1E2126;
+    --light: #ffffff;
+}
+
+body{
+    font-family: 'Spartan', sans-serif;
+    font-weight: 300;
+    color: var(--light);
+}
+
+.bg-dark{
+    background-color: var(--dark) !important;
+}
+
+.bg-dark-x{
+    background-color: var(--dark-x);
+}
+
+.form-control, .btn{
+    min-height: 3.125rem;
+    line-height: initial;
+}
+
+.texto{
+    text-align: center;
+}
+
+.img-1 {
+    background-image: url('../img/red-slide.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.img-2 {
+    background-image: url('../img/green-slide.png');
+    background-size: cover;
+    background-position: center;
+}

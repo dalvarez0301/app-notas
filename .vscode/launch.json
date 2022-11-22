@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-AppnotasApplication<appnotas>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.ucentral.appnotas.AppnotasApplication",
+            "projectName": "appnotas",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
