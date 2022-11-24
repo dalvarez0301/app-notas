@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping("views/viewNotas")
+@RequestMapping("/views/viewNotas")
 public class controladorNotas {
 
     @Autowired
@@ -70,6 +70,6 @@ public class controladorNotas {
         notaServicio.guardarNota(notas);
         System.out.println("Nota guardada");
         attribute.addFlashAttribute("success", "La nota se ha guardado correctamente");
-        return "redirect:/views/viewNotas/consultar_notas";
+        return "redirect:consultar_notas";
     }
 }

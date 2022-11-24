@@ -9,16 +9,16 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Consultar Usuarios</title>
+        <title>Modificar Actividades</title>
 
         <!-- Custom fonts for this template-->
-        <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+        <link href="../../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
         <link
             href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
             rel="stylesheet">
 
         <!-- Custom styles for this template-->
-        <link href="../../css/sb-admin-2.min.css" rel="stylesheet">
+        <link href="../../../css/sb-admin-2.min.css" rel="stylesheet">
 
     </head>
 
@@ -52,9 +52,9 @@
                         <div class="bg-white py-2 collapse-inner rounded">
                             <a class="collapse-item" th:href="@{/crear_usuarios}">Crear Usuarios</a>
                             <a class="collapse-item" th:href="@{/crear_materias}">Crear Materias</a>
-                            <a class="collapse-item" th:href="@{/crear_grupos}">Crear Grupos</a>
+                            <a class="collapse-item" th:href="@{/views/viewGrupos/crear_grupos}">Crear Grupos</a>
                             <a class="collapse-item" th:href="@{/crear_cortes}">Crear Cortes</a>
-                            <a class="collapse-item " th:href="@{crear_actividades}">Crear Actividades</a>
+                            <a class="collapse-item" th:href="@{crear_actividades}">Crear Actividades</a>
                         </div>
                     </div>
                 </li>
@@ -120,77 +120,59 @@
 
             <!-- Content Wrapper -->
             <div id="content-wrapper" class="d-flex flex-column">
-                <div class="alert alert-success alert-dismissable" th:if="${success != null}">
-                    <label th:text="${success}"></label>
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                </div> 
-                <div class="alert alert-danger alert-dismissable" th:if="${error != null}">
-                    <label th:text="${error}"></label>
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                </div> 
-                <div class="alert alert-warning alert-dismissable" th:if="${warning != null}">
-                    <label th:text="${warning}"></label>
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                </div> 
-                <div class="alert alert-info alert-dismissable" th:if="${info != null}">
-                    <label th:text="${info}"></label>
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                </div> 
+
                 <!-- Main Content -->
                 <div id="content">
 
-                    <!-- Begin Page Content -->
-                    <div class="container mt-4">
-
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Identificacion</th>
-                                    <th scope="col">Nombre</th>
-                                    <th scope="col">Apellido</th>
-                                    <th scope="col">Correo</th>
-                                    <th scope="col">Contraseña</th>
-                                    <th scope="col">Rol</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr th:each="usr:${usuario}">
-                                    <td th:text="${usr.identificacion}"></td>
-                                    <td th:text="${usr.nombre}"></td>
-                                    <td th:text="${usr.apellido}"></td>
-                                    <td th:text="${usr.correo}"></td>
-                                    <td th:text="${usr.contrasena}"></td>
-                                    <td th:text="${usr.rol}"></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="container ">
+                        <div class="col-sm-6"> 
+                            <form th:action="@{/views/viewEstudiantes/save}" th:object=${usuario} method="post">
+                                <div class="mb-3">
+                                    <label for="exampleInputPassword1" class="form-label">Nombre del Estudiante</label>
+                                    <input th:field="*{nombre}" type="text" class="form-control" />
+                                  </div>
+                                  <div class="mb-3">
+                                    <label for="exampleInputPassword1" class="form-label">Apellido del Estudiante</label>
+                                    <input th:field="*{apellido}" type="text" class="form-control" />
+                                  </div>
+                                  <div class="mb-3">
+                                      <label for="exampleInputPassword1" class="form-label">Correo del Estudiante</label>
+                                      <input th:field="*{correo}" type="text" class="form-control" />
+                                  </div>
+                                  <div class="mb-3">
+                                      <label for="exampleInputPassword1" class="form-label">Contraseña del Estudiante</label>
+                                      <input th:field="*{contrasena}" type="password" class="form-control" />
+                                  </div>
+                                  <br>
+                                  <button type="submit" class="btn btn-primary">Crear Estudiante</button>
+                                </div>     
+                            </form>
+                        </div>
                     </div>
-                </div>
                 <!-- End of Main Content -->
+                </div> 
+            <!-- End of Content Wrapper -->
             </div>
-            <!-- End of Content Wrapper -->                   
-
-
-        </div>
         <!-- End of Page Wrapper -->
+        </div>
 
 
         <!-- Bootstrap core JavaScript-->
-        <script src="../../vendor/jquery/jquery.min.js"></script>
+        <script src="../../../vendor/jquery/jquery.min.js"></script>
         <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
         <!-- Core plugin JavaScript-->
-        <script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>
+        <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
 
         <!-- Custom scripts for all pages-->
-        <script src="../../js/sb-admin-2.min.js"></script>
+        <script src="../../../js/sb-admin-2.min.js"></script>
 
         <!-- Page level plugins -->
-        <script src="../../vendor/chart.js/Chart.min.js"></script>
+        <script src="../../../vendor/chart.js/Chart.min.js"></script>
 
         <!-- Page level custom scripts -->
-        <script src="../../js/demo/chart-area-demo.js"></script>
-        <script src="../../js/demo/chart-pie-demo.js"></script>
+        <script src="../../../js/demo/chart-area-demo.js"></script>
+        <script src="../../../js/demo/chart-pie-demo.js"></script>
 
     </body>
 

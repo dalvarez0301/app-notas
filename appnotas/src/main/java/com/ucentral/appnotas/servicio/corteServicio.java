@@ -17,10 +17,9 @@ public class corteServicio implements ICorteServicio{
     public List<Corte> listarTodCortes() {
         return (List<Corte>) repositorioCorte.findAll();
     }
-
     @Override
-    public void guardarCortes(Corte corte) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public Corte guardarCortes(Corte corte) {
+        return repositorioCorte.save(corte);
     }
 
     @Override
@@ -32,6 +31,7 @@ public class corteServicio implements ICorteServicio{
     public void eliminarCortes(int codigo) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
 
 
 

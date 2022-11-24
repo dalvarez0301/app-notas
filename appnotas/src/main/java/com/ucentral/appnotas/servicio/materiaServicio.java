@@ -19,19 +19,21 @@ public class materiaServicio implements IMateriasServicio {
     }
 
     @Override
-    public void guardarMaterias(Materia materia) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public Materia guardarMaterias(Materia materia) {
+        return repositorioMateria.save(materia);
+         
     }
 
     @Override
     public Materia buscarMateriaID(int codigo) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return repositorioMateria.findById(codigo).orElse(null);
     }
 
     @Override
     public void eliminarMateria(int codigo) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        repositorioMateria.deleteById(codigo);
     }
+
 
 
 

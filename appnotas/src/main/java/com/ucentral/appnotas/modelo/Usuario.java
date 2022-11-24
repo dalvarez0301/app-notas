@@ -1,5 +1,6 @@
 package com.ucentral.appnotas.modelo;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,27 +16,25 @@ public class Usuario {
     
 
     private int identificacion;
-
     private String nombre;
-
     private String apellido;
- 
     private String correo;
-
     private String contrasena;
+    
+    @Column(nullable = false, columnDefinition = "TINYINT(1)")
+    private boolean enabled;
 
-    private String rol;
 
     public Usuario() {
     }
 
-    public Usuario(int identificacion, String nombre, String apellido, String correo, String contrasena, String rol) {
+    public Usuario(int identificacion, String nombre, String apellido, String correo, String contrasena, boolean enabled) {
         this.identificacion = identificacion;
         this.nombre = nombre;
         this.apellido = apellido;
         this.correo = correo;
         this.contrasena = contrasena;
-        this.rol = rol;
+        this.enabled = enabled;
     }
 
     public int getIdentificacion() {
@@ -78,13 +77,16 @@ public class Usuario {
         this.contrasena = contrasena;
     }
 
-    public String getRol() {
-        return rol;
+    public boolean isEnabled() {
+        return enabled;
     }
 
-    public void setRol(String rol) {
-        this.rol = rol;
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
+
+    
+    
 
     
 }

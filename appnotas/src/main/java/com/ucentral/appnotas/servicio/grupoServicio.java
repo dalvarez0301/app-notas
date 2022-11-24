@@ -17,10 +17,10 @@ public class grupoServicio implements IGrupoServicio{
     public List<Grupo> listarTodGrupos() {
         return (List<Grupo>) repositorioGrupo.findAll();
     }
-
+    
     @Override
-    public void guardarGrupos(Grupo grupo) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public Grupo guardarGrupos(Grupo grupo) {
+        return repositorioGrupo.save(grupo);
     }
 
     @Override
@@ -32,6 +32,7 @@ public class grupoServicio implements IGrupoServicio{
     public void eliminarGrupos(int codigo) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
 
 
     

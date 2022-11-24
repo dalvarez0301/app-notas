@@ -50,11 +50,11 @@
                     </a>
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" th:href="@{crear_usuarios}">Crear Usuarios</a>
-                            <a class="collapse-item" th:href="@{crear_materias}">Crear Materias</a>
-                            <a class="collapse-item" th:href="@{crear_grupos}">Crear Grupos</a>
-                            <a class="collapse-item" th:href="@{crear_cortes}">Crear Cortes</a>
-                            <a class="collapse-item " th:href="@{crear_actividades}">Crear Actividades</a>
+                            <a class="collapse-item" th:href="@{/views/viewEstudiantes/crear_usuarios/}">Crear Usuarios</a>
+                            <a class="collapse-item" th:href="@{/views/viewMaterias/crear_materias}">Crear Materias</a>
+                            <a class="collapse-item" th:href="@{/views/viewGrupos/crear_grupos}">Crear Grupos</a>
+                            <a class="collapse-item" th:href="@{/views/viewCortes/crear_cortes}">Crear Cortes</a>
+                            <a class="collapse-item" th:href="@{/views/viewActividades/crear_actividades}">Crear Actividades</a>
                         </div>
                     </div>
                 </li>
@@ -67,7 +67,7 @@
                     </a>
                     <div id="collapseRegistrar" class="collapse show" aria-labelledby="headingRegistrar" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item active" th:href="@{registrar_notas}">Registrar Notas</a>
+                            <a class="collapse-item active" th:href="@{/views/viewNotas/registrar_notas}">Registrar Notas</a>
                         </div>
                     </div>
                 </li>
@@ -80,8 +80,8 @@
                     </a>
                     <div id="collapseConsultar" class="collapse " aria-labelledby="headingConsultar" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" th:href="@{consultar_actividades}">Consultar Actividades</a>
-                            <a class="collapse-item " th:href="@{consultar_notas}">Consultar Notas</a>
+                            <a class="collapse-item" th:href="@{/views/viewActividades/consultar_actividades}">Consultar Actividades</a>
+                            <a class="collapse-item" th:href="@{/views/viewNotas/consultar_notas}">Consultar Notas</a>
                         </div>
                     </div>
                 </li>
@@ -94,9 +94,9 @@
                     </a>
                     <div id="collapseModificar" class="collapse" aria-labelledby="headingModificar" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" th:href="@{modificar_estudiante}">Modificar Estudiante</a>
-                            <a class="collapse-item" th:href="@{modificar_materia}">Modificar Materia</a>
-                            <a class="collapse-item " th:href="@{modificar_actividades}">Modificar Actividades</a>
+                            <a class="collapse-item" th:href="@{/views/viewEstudiantes/modificar_estudiante}">Modificar Estudiante</a>
+                            <a class="collapse-item" th:href="@{/views/viewMaterias/modificar_materia}">Modificar Materia</a>
+                            <a class="collapse-item" th:href="@{/views/viewActividades/modificar_actividades}">Modificar Actividades</a>
                         </div>
                     </div>
                 </li>
@@ -109,7 +109,7 @@
                     </a>
                     <div id="collapseBorrar" class="collapse" aria-labelledby="headingBorrar" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item " th:href="@{borrar_actividades}">Borrar Actividades</a>
+                            <a class="collapse-item " th:href="@{/views/viewActividades/borrar_actividades}">Borrar Actividades</a>
                         </div>
                     </div>
                 </li>
@@ -140,39 +140,38 @@
 
                         <div class="container ">
                             <div class="col-sm-6"> 
+                                <br>
+                                <h1>Registrar Nota</h1>
+                                <br>
+                                <br>
                                 <form th:action="@{/views/viewNotas/save}" th:object=${nota} method="post">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <h3>Registrar Nota</h3>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Nombre Actividad</label>
-                                            <select th:field="*{actividad}" class="form-control" />
-                                                <th:block th:each="actividad:${actividad}">
-                                                    <option th:text="${actividad.nombre}" th:value="${actividad.codigo}">
-                                                    </option>
-                                                </th:block>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Estudiante</label>
-                                            <select th:field="*{estudiante}" class="form-control" />
-                                                <th:block th:each="usuario:${usuario}">
-                                                    <option th:text="${usuario.nombre + usuario.apellido}" th:value="${usuario.identificacion}">
-                                                    </option>
-                                                </th:block>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Nota</label>
-                                            <input th:field="*{nota}" type="text" class="form-control" />
-                                            <small class="form-text text-danger" th:if="${#fields.hasErrors('nota')}"
-                                            th:error="*{nota}">
-                                           </smal>
-                                        </div>
-                                        <div class="card-footer">
-                                            <input type="submit" value="Guardar" class="btn btn-success">
-                                        </div>
+                                    <div class="mb-3">
+                                        <label for="exampleInputPassword1" class="form-label">Seleccione la Actividad</label>
+                                        <select th:field="*{actividad}" class="form-control" />
+                                        <th:block th:each="actividad:${actividad}">
+                                            <option th:text="${actividad.nombre}" th:value="${actividad.codigo}">
+                                            </option>
+                                        </th:block>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleInputPassword1" class="form-label">Seleccione el Estudiante</label>
+                                        <select th:field="*{estudiante}" class="form-control" />
+                                        <th:block th:each="usuario:${usuario}">
+                                            <option th:text="${usuario.nombre + usuario.apellido}" th:value="${usuario.identificacion}">
+                                            </option>
+                                        </th:block>
+                                    </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleInputPassword1" class="form-label">Nota</label>
+                                        <input th:field="*{nota}" type="text" class="form-control" />
+                                        <small class="form-text text-danger" th:if="${#fields.hasErrors('nota')}"
+                                        th:error="*{nota}">
+                                       </smal>
+                                    </div>
+                                    <br>
+                                    <button type="submit" value="Guardar" class="btn btn-primary">Crear Actividad</button>
                                     </div>
                                 </form>
                             </div>

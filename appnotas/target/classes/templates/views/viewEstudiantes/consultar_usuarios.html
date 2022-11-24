@@ -9,7 +9,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Crearr Usuarios</title>
+        <title>Consultar Usuarios</title>
 
         <!-- Custom fonts for this template-->
         <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -42,19 +42,19 @@
                 <hr class="sidebar-divider">
 
                 <!-- Nav Item - Pages Collapse Menu -->
-                <li class="nav-item active">
-                    <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                        aria-expanded="true" aria-controls="collapseTwo">
                         <i></i>
                         <span>Crear</span>
                     </a>
-                    <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" th:href="@{/crear_usuarios}">Crear Usuarios</a>
+                            <a class="collapse-item" th:href="@{/crear_usuarios}">Crear Estudiante</a>
                             <a class="collapse-item" th:href="@{/crear_materias}">Crear Materias</a>
-                            <a class="collapse-item" th:href="@{/crear_grupos}">Crear Grupos</a>
+                            <a class="collapse-item" th:href="@{/views/viewGrupos/crear_grupos}">Crear Grupos</a>
                             <a class="collapse-item" th:href="@{/crear_cortes}">Crear Cortes</a>
-                            <a class="collapse-item active" th:href="@{crear_actividades}">Crear Actividades</a>
+                            <a class="collapse-item " th:href="@{/crear_actividades}">Crear Actividades</a>
                         </div>
                     </div>
                 </li>
@@ -72,15 +72,15 @@
                     </div>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseConsultar"
+                <li class="nav-item active">
+                    <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseConsultar"
                        aria-expanded="true" aria-controls="collapseConsultar">
                         <i></i>
                         <span>Consultar</span>
                     </a>
-                    <div id="collapseConsultar" class="collapse" aria-labelledby="headingConsultar" data-parent="#accordionSidebar">
+                    <div id="collapseConsultar" class="collapse show" aria-labelledby="headingConsultar" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" th:href="@{consultar_actividades}">Consultar Actividades</a>
+                            <a class="collapse-item active" th:href="@{/consultar_actividades}">Consultar Actividades</a>
                             <a class="collapse-item" th:href="@{/consultar_notas}">Consultar Notas</a>
                         </div>
                     </div>
@@ -120,73 +120,57 @@
 
             <!-- Content Wrapper -->
             <div id="content-wrapper" class="d-flex flex-column">
-
+                <div class="alert alert-success alert-dismissable" th:if="${success != null}">
+                    <label th:text="${success}"></label>
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                </div> 
+                <div class="alert alert-danger alert-dismissable" th:if="${error != null}">
+                    <label th:text="${error}"></label>
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                </div> 
+                <div class="alert alert-warning alert-dismissable" th:if="${warning != null}">
+                    <label th:text="${warning}"></label>
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                </div> 
+                <div class="alert alert-info alert-dismissable" th:if="${info != null}">
+                    <label th:text="${info}"></label>
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                </div> 
                 <!-- Main Content -->
                 <div id="content">
 
-                    <div class="container ">
-                        <div class="col-sm-6"> 
-                            <form th:action="@{/views/viewUsuarios/save}" th:object=${usuario} method="post">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h3>Crear Usuario</h3>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Identificacion Usuario</label>
-                                        <input th:field="*{identificacion}" type="text" class="form-control" />
-                                        <small class="form-text text-danger" th:if="${#fields.hasErrors('identificacion')}"
-                                        th:error="*{identificacion}">
-                                       </smal>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Nombres</label>
-                                        <input th:field="*{nombre}" type="text" class="form-control" />
-                                        <small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}"
-                                        th:error="*{nombre}">
-                                       </smal>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Apellidos</label>
-                                        <input th:field="*{apellido}" type="text" class="form-control" />
-                                        <small class="form-text text-danger" th:if="${#fields.hasErrors('apellido')}"
-                                        th:error="*{apellido}">
-                                        </smal>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Correo</label>
-                                        <input th:field="*{correo}" type="text" class="form-control" />
-                                        <small class="form-text text-danger" th:if="${#fields.hasErrors('correo')}"
-                                        th:error="*{correo}">
-                                        </smal>
-                                    </div>
-                                     <div class="form-group">
-                                        <label>Contraseña</label>
-                                        <input th:field="*{contrasena}" type="text" class="form-control" />
-                                        <small class="form-text text-danger" th:if="${#fields.hasErrors('contrasena')}"
-                                        th:error="*{contrasena}">
-                                        </smal>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Rol</label>
-                                        <input th:field="*{rol}" type="text" class="form-control" />
-                                        <small class="form-text text-danger" th:if="${#fields.hasErrors('rol')}"
-                                        th:error="*{rol}">
-                                        </smal>
-                                    </div> 
-                                    <div class="card-footer">
-                                        <input type="submit" value="Guardar" class="btn btn-success">
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                <!-- End of Main Content -->      
+                    <!-- Begin Page Content -->
+                    <div class="container mt-4">
 
-                </div> 
-            <!-- End of Content Wrapper -->
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Identificacion</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Apellido</th>
+                                    <th scope="col">Correo</th>
+                                    <th scope="col">Contraseña</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="usr:${usuario}">
+                                    <td th:text="${usr.identificacion}"></td>
+                                    <td th:text="${usr.nombre}"></td>
+                                    <td th:text="${usr.apellido}"></td>
+                                    <td th:text="${usr.correo}"></td>
+                                    <td th:text="${usr.contrasena}"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- End of Main Content -->
             </div>
-        <!-- End of Page Wrapper -->
+            <!-- End of Content Wrapper -->                   
+
+
         </div>
+        <!-- End of Page Wrapper -->
 
 
         <!-- Bootstrap core JavaScript-->

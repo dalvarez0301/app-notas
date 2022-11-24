@@ -6,7 +6,7 @@ import java.util.List;
 public interface IGrupoServicio {
     
     public List<Grupo> listarTodGrupos();
-    public void guardarGrupos(Grupo grupo);
+    public Grupo guardarGrupos(Grupo grupo);
     public Grupo buscarGruposID(int codigo);
     public void eliminarGrupos(int codigo);
 }

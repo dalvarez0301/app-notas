@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping("views/viewActividades")
+@RequestMapping("/views/viewActividades")
 public class controladorActividades {
     
     @Autowired
@@ -74,12 +74,12 @@ public class controladorActividades {
             model.addAttribute("corte", listaCortes); 
             model.addAttribute("grupo", listaGrupos); 
             System.out.println("Error al guardar");
-            return "views/viewActividades/crear_actividades";
+            return "crear_actividades";
         }
         actividadServicio.guardarActividad(actividades);
         System.out.println("Actividad guardada");
         attribute.addFlashAttribute("success", "La actividad se ha guardado correctamente");
-        return "redirect:/views/viewActividades/consultar_actividades";
+        return "redirect:consultar_actividades";
     }
 
 
@@ -100,12 +100,12 @@ public class controladorActividades {
             if(actividades == null){
                 System.out.println("Error: El ID de la actividad no existe!");
                 attribute.addFlashAttribute("error", "El ID de la actividad no existe!");
-                return "redirect:/views/viewActividades/modificar_actividades";
+                return "redirect:modificar_actividades";
             }
         }else{
             System.out.println("Error: El ID ingresado no es valido!");
             attribute.addFlashAttribute("error", "El ID ingresado no es valido!");
-            return "redirect:/views/viewActividades/modificar_actividades";
+            return "redirect:modificar_actividades";
         }
 
         List<Materia> listaMaterias = materiaServicio.listarTodMaterias();
@@ -137,17 +137,17 @@ public class controladorActividades {
             if(actividades == null){
                 System.out.println("Error: El ID de la actividad no existe!");
                 attribute.addFlashAttribute("error", "El ID de la actividad no existe!");
-                return "redirect:/views/viewActividades/borrar_actividades";
+                return "redirect:borrar_actividades";
             }
         }else{
             System.out.println("Error: El ID ingresado no es valido!");
             attribute.addFlashAttribute("error", "El ID ingresado no es valido!");
-            return "redirect:/views/viewActividades/borrar_actividades";
+            return "redirect:borrar_actividades";
         }
 
         actividadServicio.eliminarActividad(codigo);
         System.out.println("Actividad borrada");
         attribute.addFlashAttribute("warning", "La actividad se ha eliminado correctamente");
-        return "redirect:/views/viewActividades/borrar_actividades";
+        return "redirect:borrar_actividades";
     }
 }
